@@ -66,7 +66,7 @@ Shader "Hidden/TexShuffle"
                 else if (channelNum == 1) { value = tex2D(tex, coord).g; }
                 else if (channelNum == 2) { value = tex2D(tex, coord).b; }
                 else if (channelNum == 3) { value = tex2D(tex, coord).a; }
-                else if (channelNUm == 4) {
+                else if (channelNum == 4) {
                     float4 col = tex2D(tex, coord);
                     value = 0.299 * col.r + 0.587 * col.g + 0.114 * col.b;
                 }
