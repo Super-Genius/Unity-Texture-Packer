@@ -33,7 +33,7 @@ public class TexturePacker : EditorWindow
                         };
 
 
-    enum Channels { R, G, B, A }
+    enum Channels { R, G, B, A, Grayscale }
     struct TextureSettings
     {
         public int resolution;
@@ -120,6 +120,7 @@ public class TexturePacker : EditorWindow
                 t.menu.AppendAction("G", (DropdownMenuAction a) => { SelectChannelLabel.text = a.name; });
                 t.menu.AppendAction("B", (DropdownMenuAction a) => { SelectChannelLabel.text = a.name; });
                 t.menu.AppendAction("A", (DropdownMenuAction a) => { SelectChannelLabel.text = a.name; });
+                t.menu.AppendAction("Grayscale", (DropdownMenuAction a) => { SelectChannelLabel.text = a.name; });
             });
 
         root.Query<ToolbarToggle>().ForEach((ToolbarToggle t) => {
