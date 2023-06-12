@@ -196,14 +196,14 @@ public class TexturePacker : EditorWindow
                 if (!_tex && (string)channelModes[ve.parent.name] == "texture")
                 {
                     slotTexture = new Texture2D(1, 1, TextureFormat.RGBA32, false);
-                    createdTextures.add(slotTexture);
+                    createdTextures.Add(slotTexture);
                     slotTexture.SetPixels(CreateSolidColorTex(Color.grey).GetPixels());
                     slotTexture.Apply();
                 }
                 else if ((string)channelModes[ve.parent.name] == "color")
                 {
                     slotTexture = new Texture2D(1, 1, TextureFormat.RGBA32, false);
-                    createdTextures.add(slotTexture);
+                    createdTextures.Add(slotTexture);
                     slotTexture.SetPixels(CreateSolidColorTex(ve.parent.Q<ColorField>().value).GetPixels());
                     slotTexture.Apply();
                 }
