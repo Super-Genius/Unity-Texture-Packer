@@ -245,10 +245,10 @@ public class TexturePacker : EditorWindow
 
         RenderTexture outputRT = new RenderTexture(outputTextureSettings.resolution, outputTextureSettings.resolution, 0, RenderTextureFormat.ARGB32);
         outputRT.useMipMap = false;
+        RenderTexture previousActive = RenderTexture.active;
+        
         Graphics.Blit(Texture2D.whiteTexture, outputRT, shuffleTexMat);
 
-        RenderTexture previousActive = RenderTexture.active;
-        RenderTexture.active = outputRT;
         outputTexture.ReadPixels(new Rect(0, 0, outputTextureSettings.resolution, outputTextureSettings.resolution), 0, 0, false);
         outputTexture.Apply();
         RenderTexture.active = previousActive;
