@@ -210,8 +210,6 @@ public class TexturePacker : EditorWindow
                 else
                 {
                     slotTexture = _tex;
-                    slotTexture.filterMode = FilterMode.Point;
-                    slotTexture.Apply();
                 }
 
                 //Get the value from channel select dropdown menu, parse to enumerator and save to mode variable
