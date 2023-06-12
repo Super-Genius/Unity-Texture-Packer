@@ -182,7 +182,7 @@ public class TexturePacker : EditorWindow
     private void SaveTexture()
     {   
         List<Slot> slots = new List<Slot>();
-        List<Texture2D> createTextures = new List<Texture2D>();
+        List<Texture2D> createdTextures = new List<Texture2D>();
 
         //Iterate texture-item-container elements.
         root.Query<VisualElement>(className: classQ).ForEach(
@@ -271,7 +271,7 @@ public class TexturePacker : EditorWindow
         }
 
         DestroyImmediate(outputTexture);
-        foreach(Texture2D tex2d in createTextures)
+        foreach(Texture2D tex2d in createdTextures)
         {
             DestroyImmediate(tex2d);
         }
