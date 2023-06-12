@@ -195,21 +195,19 @@ public class TexturePacker : EditorWindow
                 if (!_tex && (string)channelModes[ve.parent.name] == "texture")
                 {
 
-                    slotTexture = new Texture2D(1, 1, TextureFormat.RGBA32, true);
+                    slotTexture = new Texture2D(1, 1, TextureFormat.RGBA32, false);
                     slotTexture.SetPixels(CreateSolidColorTex(Color.grey).GetPixels());
                     slotTexture.Apply();
                 }
                 else if ((string)channelModes[ve.parent.name] == "color")
                 {
-                    slotTexture = new Texture2D(1, 1, TextureFormat.RGBA32, true);
+                    slotTexture = new Texture2D(1, 1, TextureFormat.RGBA32, false);
                     slotTexture.SetPixels(CreateSolidColorTex(ve.parent.Q<ColorField>().value).GetPixels());
                     slotTexture.Apply();
                 }
                 else
                 {
-                    slotTexture = new Texture2D(_tex.width, _tex.height, TextureFormat.RGBA32, true);
-                    slotTexture.SetPixels(_tex.GetPixels());
-                    slotTexture.Apply();
+                    slotTexture = _tex;
                 }
 
                 //Get the value from channel select dropdown menu, parse to enumerator and save to mode variable
@@ -244,6 +242,7 @@ public class TexturePacker : EditorWindow
         outputTexture.hideFlags = HideFlags.DontUnloadUnusedAsset;
 
         RenderTexture outputRT = new RenderTexture(outputTextureSettings.resolution, outputTextureSettings.resolution, 0, RenderTextureFormat.ARGB32);
+        outputRT.useMipMap = false;
         Graphics.Blit(Texture2D.whiteTexture, outputRT, shuffleTexMat);
 
         RenderTexture previousActive = RenderTexture.active;
