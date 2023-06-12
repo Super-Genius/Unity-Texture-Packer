@@ -182,6 +182,7 @@ public class TexturePacker : EditorWindow
     private void SaveTexture()
     {   
         List<Slot> slots = new List<Slot>();
+        List<Texture2D> createTextures = new List<Texture2D>();
 
         //Iterate texture-item-container elements.
         root.Query<VisualElement>(className: classQ).ForEach(
@@ -194,20 +195,23 @@ public class TexturePacker : EditorWindow
                 //Fallback if can't read the texture
                 if (!_tex && (string)channelModes[ve.parent.name] == "texture")
                 {
-
                     slotTexture = new Texture2D(1, 1, TextureFormat.RGBA32, false);
+                    createdTextures.add(slotTexture);
                     slotTexture.SetPixels(CreateSolidColorTex(Color.grey).GetPixels());
                     slotTexture.Apply();
                 }
                 else if ((string)channelModes[ve.parent.name] == "color")
                 {
                     slotTexture = new Texture2D(1, 1, TextureFormat.RGBA32, false);
+                    createdTextures.add(slotTexture);
                     slotTexture.SetPixels(CreateSolidColorTex(ve.parent.Q<ColorField>().value).GetPixels());
                     slotTexture.Apply();
                 }
                 else
                 {
                     slotTexture = _tex;
+                    slotTexture.filterMode = FilterMode.Point;
+                    slotTexture.Apply();
                 }
 
                 //Get the value from channel select dropdown menu, parse to enumerator and save to mode variable
@@ -267,9 +271,9 @@ public class TexturePacker : EditorWindow
         }
 
         DestroyImmediate(outputTexture);
-        foreach(Slot sl in slots)
+        foreach(Texture2D tex2d in createTextures)
         {
-            DestroyImmediate(sl.texture);
+            DestroyImmediate(tex2d);
         }
         slots.Clear();
     }
